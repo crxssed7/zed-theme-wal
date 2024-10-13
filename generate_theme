@@ -8,6 +8,8 @@ WAL_COLOURS_FILE="${HOME}/.cache/wal/colors.json"
 EXTENSION_DIRECTORY="$(dirname "${0}")"
 # The file to write the generated theme to, and that Zed will read
 THEME_FILE="${EXTENSION_DIRECTORY}/themes/wal-theme.json"
+# Some colours conflict with other colours. Specify a neutral colour that does not conflict with any of your wal colours.
+NEUTRAL="#1e1e1e"
 
 # If the wal colour scheme file does not exist, exit with an error
 if [[ ! -f "${WAL_COLOURS_FILE}" ]]; then
@@ -43,7 +45,7 @@ cat <<EOF >"${THEME_FILE}"
       "name": "wal",
       "appearance": "dark",
       "style": {
-        "background.appearance": "opaque",
+        "background.appearance": "blurred",
         "border": "${color8}",
         "border.variant": "${color8}",
         "border.focused": "${color9}",
@@ -54,15 +56,15 @@ cat <<EOF >"${THEME_FILE}"
         "surface.background": "${color0}",
         "background": "${background}",
         "element.background": "${color0}",
-        "element.hover": "${color1}",
+        "element.hover": "${NEUTRAL}",
         "element.active": "${color2}",
         "element.selected": "${color3}",
         "element.disabled": "${color8}",
         "drop_target.background": "${color3}",
         "ghost_element.background": "${color0}",
-        "ghost_element.hover": "${color1}",
+        "ghost_element.hover": "${NEUTRAL}",
         "ghost_element.active": "${color2}",
-        "ghost_element.selected": "${color3}",
+        "ghost_element.selected": "${NEUTRAL}",
         "ghost_element.disabled": "${color8}",
         "text": "${foreground}",
         "text.muted": "${color8}",
@@ -105,8 +107,9 @@ cat <<EOF >"${THEME_FILE}"
         "editor.invisible": "${color8}",
         "editor.wrap_guide": "${color8}",
         "editor.active_wrap_guide": "${color8}",
-        "editor.document_highlight.read_background": "${color3}",
+        "editor.document_highlight.read_background": "${NEUTRAL}",
         "editor.document_highlight.write_background": "${color4}",
+        "editor.document_highlight.bracket_background": "${NEUTRAL}",
         "terminal.background": "${background}",
         "terminal.foreground": "${foreground}",
         "terminal.bright_foreground": "${color15}",
@@ -182,7 +185,7 @@ cat <<EOF >"${THEME_FILE}"
           {
             "cursor": "${cursor}",
             "background": "${color0}",
-            "selection": "${color1}"
+            "selection": "${NEUTRAL}"
           }
         ],
         "syntax": {
